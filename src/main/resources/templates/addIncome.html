@@ -1,0 +1,64 @@
+<!DOCTYPE html >
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{userBase::layout(~{::section})}">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${title}"></title>
+</head>
+<body>
+<section class="banner d-flex justify-content-center align-items-center" style="height: 85vh;">
+
+    <div class="container">
+
+        <div class="row">
+
+            <div class="col-md-6 offset-md-3">
+
+                <div class="my-card">
+
+                    <div th:if="${session.message}" th:classappend="${session.message.type}" class="alert" role="alert">
+
+                        <p class="text-center" th:text="${session.message.content}"></p>
+
+                    </div>
+
+                    <th:block th:text="${@sessionHelper.removeMessage()}"></th:block>
+
+
+                    <h1 class="text-center text-black">Add Income !!</h1>
+
+                    <form action="" th:action="@{/user/addIncome}" method="post">
+
+                        <div class="form-group">
+
+                            <label class="text-black">Source</label>
+                            <select name="source" class="custom-select">
+                                <option selected>Select Source</option>
+                                <option value="rent">Rent</option>
+                                <option value="salary">Salary</option>
+                                <option value="other">Other</option>
+                            </select>
+
+                        </div>
+
+                        <div class="form-group">
+                            <label class="text-black">Amount</label>
+                            <input type="number"
+                                   class="form-control transparent-input"
+                                   name="amount"
+                                   placeholder="enter amount"
+                                   required>
+                        </div>
+
+                        <div class="container text-center mt-3">
+                            <button type="submit" class="btn btn-success mb-3">Add Income</button>
+                            <a th:href="@{/user/home}" class="btn btn-warning mb-3">Back</a>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+</body>
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html >
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{base::layout(~{::section})}">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+</head>
+<body>
+<section class="banner d-flex justify-content-center align-items-center">
+
+    <div class="container">
+
+        <div class="row">
+
+            <div class="col-md-6 offset-md-3">
+
+                <div class="my-card">
+
+                    <h1 class="text-center text-black">Login Here !!</h1>
+
+                    <form th:action="@{/login}" method="post">
+
+                        <div th:if="${param.error}" class="alert alert-danger text-center">
+                            Invalid username or password !!
+                        </div>
+                        <div th:if="${param.logout}" class="alert alert-success text-center">
+                            You have been logged out !!
+                        </div>
+
+                        <div class="form-group">
+
+                            <label class="text-black">Email</label>
+                            <input type="text"
+                                        class="form-control transparent-input"
+                                        name="username"
+                                        placeholder="enter your email"
+                                        required>
+                        </div>
+
+
+                        <div class="form-group">
+                            <label class="text-black">Password</label>
+                            <input type="password"
+                                           class="form-control transparent-input"
+                                           name="password"
+                                           placeholder="enter your password"
+                                           required>
+                        </div>
+
+                        <div class="container text-center">
+
+                            <button type="submit" class="btn btn-success mb-3">Login</button>
+                            <button type="reset" class="btn btn-warning mb-3">Reset</button>
+
+                            <p class="text-black">Not yet Register ? <a class="btn btn-primary" th:href="@{/signup}">Register</a> </p>
+
+
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+</body>
+</html>

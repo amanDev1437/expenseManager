@@ -1,0 +1,62 @@
+<!DOCTYPE html >
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{userBase::layout(~{::section})}">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${title}"></title>
+</head>
+<body>
+<section class="banner d-flex justify-content-center align-items-center" style="height: 85vh;">
+
+    <div class="container">
+
+        <div class="row">
+
+            <div class="col-md-6 offset-md-3">
+
+                <div class="my-card">
+
+                <h1 class="text-center text-black">Your Expenses !!</h1>
+
+                <table class="table text-center">
+                    <thead>
+                    <tr>
+                        <th scope="col">S.No</th>
+                        <th scope="col">Category</th>
+                        <th scope="col">Description</th>
+                        <th scope="col">Amount</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+
+                    <tr th:each="e, itr : ${expenseList}">
+                        <td><span th:text="${itr.count+(currentPage*3)}"></span></td>
+                        <td><span th:text="${e.category}"></span></td>
+                        <td><span th:text="${e.description}"></span></td>
+                        <td><span th:text="${e.amount}"></span></td>
+                    </tr>
+
+                    </tbody>
+                </table>
+
+
+                    <nav aria-label="...">
+                        <ul class="pagination" th:if="${totalPage>0}">
+                            <li th:classappend="${currentPage==0 ? 'disabled':''}" class="page-item">
+                                <a class="page-link" th:href="${currentPage-1}" tabindex="-1" aria-disabled="true">Previous</a>
+                            </li>
+                            <li th:classappend="${currentPage==i-1 ?'active':''}" th:each="i :${#numbers.sequence(1,totalPage)}" class="page-item">
+                                <a th:text="${i}" class="page-link" th:href="${i-1}"></a>
+                            </li>
+
+                            <li th:classappend="${currentPage>=totalPage-1 ? 'disabled':''}" class="page-item">
+                                <a class="page-link" th:href="${currentPage+1}" >Next</a>
+                            </li>
+                        </ul>
+                    </nav>
+            </div>
+            </div>
+        </div>
+    </div>
+</section>
+</body>
+</html>

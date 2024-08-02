@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{userBase::layout(~{::section})}">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+</head>
+<body>
+<section class="banner d-flex justify-content-center p-5" style="height: 85vh;">
+    <div class="d-flex flex-column align-items-center">
+        <div class="d-flex justify-content-center">
+            <div class="card p-2 mx-2" style="width: 15rem; height:100px">
+                <div class="card-body">
+                    <h5 class="card-title text-center">Total Income</h5>
+                    <h6 class="card-subtitle mb-2 text-center">
+                        <span th:text="Rs.+ ${totalIncome}"></span>
+                    </h6>
+                </div>
+            </div>
+            <div class="card p-2 mx-2" style="width: 15rem; height:100px">
+                <div class="card-body">
+                    <h5 class="card-title text-center">Total Expense</h5>
+                    <h6 class="card-subtitle mb-2 text-center">
+                        <span th:text="Rs.+ ${totalExpense}"></span>
+                    </h6>
+                </div>
+            </div>
+            <div class="card p-2 mx-2" style="width: 15rem; height:100px">
+                <div class="card-body">
+                    <h5 class="card-title text-center">Saving</h5>
+                    <h6 class="card-subtitle mb-2 text-center">
+                        <span th:text="Rs.+ ${totalIncome-totalExpense}"></span>
+                    </h6>
+                </div>
+            </div>
+        </div>
+
+        <div class="container mt-5">
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+
+                        <h1 class="text-center text-black">Top Five Expenses !!</h1>
+                        <table class="table text-center" style="width: 100%;">
+                            <thead>
+                            <tr>
+                                <th scope="col">S.No</th>
+                                <th scope="col">Category</th>
+                                <th scope="col">Description</th>
+                                <th scope="col">Amount</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr th:each="e, itr : ${topExpense}">
+                                <td><span th:text="${itr.count}"></span></td>
+                                <td><span th:text="${e.category}"></span></td>
+                                <td><span th:text="${e.description}"></span></td>
+                                <td><span th:text="${e.amount}"></span></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+</section>
+</body>
+</html>
